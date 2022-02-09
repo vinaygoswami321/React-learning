@@ -1,7 +1,25 @@
-import React from "react";
-import  ReactDOM  from "react-dom";
-import 'bootstrap/dist/css/bootstrap.css';
-import App from "./App";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import Blogs from "./pages/Blogs";
+import Contact from "./pages/Contact";
+import NoPage from "./pages/NoPage";
+import Nowhere from "./pages/Nowhere"
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home category={"address"}/>} />
+          <Route path="blogs" element={<Blogs />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NoPage />} />
+          <Route path="/nowhere/here" element={<Nowhere />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
-
-ReactDOM.render(<App /> , document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
